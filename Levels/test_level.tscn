@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://hc1lxuadkniy"]
 
-[ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Levels/test_level.gd" id="1_ormqy"]
-[ext_resource type="Script" uid="uid://cc2y0qvxlf8ab" path="res://Levels/camera_2d.gd" id="2_00vsl"]
-[ext_resource type="Script" uid="uid://c8ktxn2ej3vhc" path="res://Levels/floor.gd" id="3_4k50d"]
+[ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Scripts/test_level.gd" id="1_ormqy"]
+[ext_resource type="Script" uid="uid://cc2y0qvxlf8ab" path="res://Scripts/camera_2d.gd" id="2_00vsl"]
+[ext_resource type="Script" uid="uid://c8ktxn2ej3vhc" path="res://Scripts/floor.gd" id="3_4k50d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a3h7v"]
 
