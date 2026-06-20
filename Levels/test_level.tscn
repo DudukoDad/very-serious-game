@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://hc1lxuadkniy"]
+
+[ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Levels/test_level.gd" id="1_ormqy"]
+[ext_resource type="Script" uid="uid://cc2y0qvxlf8ab" path="res://Levels/camera_2d.gd" id="2_00vsl"]
+[ext_resource type="Script" uid="uid://c8ktxn2ej3vhc" path="res://Levels/floor.gd" id="3_4k50d"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a3h7v"]
+
+[node name="TestLevel" type="Area2D" unique_id=199688469]
+script = ExtResource("1_ormqy")
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="." unique_id=898116531]
+position = Vector2(556, 648)
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+metadata/_edit_group_ = true
+
+[node name="TopBoundary" type="CollisionShape2D" parent="." unique_id=1158115743]
+position = Vector2(557, 0)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="." unique_id=889467314]
+position = Vector2(-405, 286)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+
+[node name="RightBoundary" type="CollisionShape2D" parent="." unique_id=121428451]
+position = Vector2(1789, 310)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1631295136]
+position = Vector2(262, 129)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=882762111]
+script = ExtResource("2_00vsl")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=515596617]
+script = ExtResource("3_4k50d")
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor" unique_id=1007403850]
+position = Vector2(-372.39465, 0)
+scale = Vector2(1.7371386, 1)
+polygon = PackedVector2Array(-33, 553, 311, 575, 977, 552, 1330, 592, 1261, 708, -89, 706)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor" unique_id=1788821465]

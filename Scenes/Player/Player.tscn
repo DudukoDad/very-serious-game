@@ -1,6 +1,20 @@
 [gd_scene format=3 uid="uid://ckil3552olo5x"]
 
 [ext_resource type="Script" uid="uid://tml21amih2qs" path="res://Scripts/player.gd" id="1_s0eop"]
+[ext_resource type="Texture2D" uid="uid://31slytk8kuk5" path="res://Assets/color_square.png" id="2_ft8w5"]
 
-[node name="Player" type="Node2D" unique_id=1261389730]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h54ih"]
+
+[node name="Player" type="RigidBody2D" unique_id=2085677933]
 script = ExtResource("1_s0eop")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1550212430]
+scale = Vector2(6.13, 6.13)
+shape = SubResource("RectangleShape2D_h54ih")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=127807151]
+scale = Vector2(3.804, 3.804)
+texture = ExtResource("2_ft8w5")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
