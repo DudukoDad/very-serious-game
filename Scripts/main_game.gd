@@ -71,7 +71,6 @@ func _deferred_load_level(level_scene_uid: String) -> void:
 	# Allow level to fully process before accessing it
 	await get_tree().process_frame
 	_place_player_at_level_spawn()
-	_setup_level_camera()
 	
 func _place_player_at_level_spawn() -> void:
 	if player == null:
@@ -82,15 +81,3 @@ func _place_player_at_level_spawn() -> void:
 		return
 		
 	player.global_position = _current_level.get_default_player_spawn()
-
-func _setup_level_camera() -> void:
-	if player == null or _current_level == null:
-		return
-	
-	var level_camera : Camera2D = _current_level.get_player_camera()
-	if level_camera == null:
-		return
-	
-	# FUTURE (camera): Temporary hookup
-	# Will become: camera_system.set_target(player)
-	level_camera.target = player
