@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dabfwdxmcmce3"]
 
-[ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Scripts/test_level.gd" id="1_uvnfx"]
+[ext_resource type="Script" uid="uid://tml21amih2qs" path="res://Scripts/player.gd" id="1_s0eop"]
+[ext_resource type="Texture2D" uid="uid://31slytk8kuk5" path="res://Assets/Sprites/color_square.png" id="2_a3d8c"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a3h7v"]
 
@@ -22,10 +23,9 @@ position = Vector2(-405, 286)
 rotation = 1.5707964
 shape = SubResource("WorldBoundaryShape2D_a3h7v")
 
-[node name="RightBoundary" type="CollisionShape2D" parent="." unique_id=121428451]
-position = Vector2(1789, 310)
-rotation = -1.5707964
-shape = SubResource("WorldBoundaryShape2D_a3h7v")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=127807151]
+scale = Vector2(3.804, 3.804)
+texture = ExtResource("2_a3d8c")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1631295136]
 position = Vector2(262, 129)

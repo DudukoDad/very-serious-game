@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://hc1lxuadkniy"]
 
 [ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Scripts/test_level.gd" id="1_ormqy"]
+[ext_resource type="Script" uid="uid://c8ktxn2ej3vhc" path="res://Scripts/floor.gd" id="3_4k50d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a3h7v"]
 
@@ -29,3 +30,14 @@ shape = SubResource("WorldBoundaryShape2D_a3h7v")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1631295136]
 position = Vector2(262, 129)
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=515596617]
+script = ExtResource("3_4k50d")
+metadata/_edit_group_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor" unique_id=1007403850]
+position = Vector2(-372.39465, 0)
+scale = Vector2(1.7371386, 1)
+polygon = PackedVector2Array(-33, 553, 311, 575, 977, 552, 1330, 592, 1261, 708, -89, 706)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor" unique_id=1788821465]

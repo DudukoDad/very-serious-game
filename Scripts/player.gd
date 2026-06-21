@@ -27,7 +27,7 @@ func jump():
 	var movement_vector = vector * speed
 	movement_vector.normalized()
 	
-	apply_central_impulse(Vector2(movement_vector))
+	apply_impulse(Vector2(movement_vector))
 	
 	
 	
