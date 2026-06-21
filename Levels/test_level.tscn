@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://hc1lxuadkniy"]
+
+[ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Scripts/test_level.gd" id="1_ormqy"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_a3h7v"]
+
+[node name="TestLevel" type="Area2D" unique_id=199688469]
+script = ExtResource("1_ormqy")
+
+[node name="BottomBoundary" type="CollisionShape2D" parent="." unique_id=898116531]
+position = Vector2(556, 648)
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+metadata/_edit_group_ = true
+
+[node name="TopBoundary" type="CollisionShape2D" parent="." unique_id=1158115743]
+position = Vector2(557, 0)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+
+[node name="LeftBoundary" type="CollisionShape2D" parent="." unique_id=889467314]
+position = Vector2(-405, 286)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+
+[node name="RightBoundary" type="CollisionShape2D" parent="." unique_id=121428451]
+position = Vector2(1789, 310)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_a3h7v")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1631295136]
+position = Vector2(262, 129)
