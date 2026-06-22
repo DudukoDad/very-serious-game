@@ -32,6 +32,7 @@ shape = SubResource("WorldBoundaryShape2D_a3h7v")
 position = Vector2(262, 129)
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=515596617]
+visible = false
 script = ExtResource("3_4k50d")
 metadata/_edit_group_ = true
 

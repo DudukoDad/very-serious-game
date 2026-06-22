@@ -5,16 +5,28 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h54ih"]
 
-[node name="Player" type="RigidBody2D" unique_id=2085677933]
+[sub_resource type="Gradient" id="Gradient_xpcdj"]
+offsets = PackedFloat32Array(0, 0.9705882)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=176213554]
 script = ExtResource("1_s0eop")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1550212430]
-scale = Vector2(6.13, 6.13)
+scale = Vector2(1.58, 1.58)
 shape = SubResource("RectangleShape2D_h54ih")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=127807151]
-scale = Vector2(3.804, 3.804)
 texture = ExtResource("2_a3d8c")
 
-[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
+[node name="Line2D" type="Line2D" parent="." unique_id=1259832757]
+width = 15.0
+gradient = SubResource("Gradient_xpcdj")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Timer" type="Timer" parent="." unique_id=828105703]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
