@@ -1,96 +1,140 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var speed = 100
-@onready var line: Line2D = $Line2D
-@onready var player: Player = $"."
+signal wall_hit
 
+@export var speed = 5
+
+@export var rotation_speed = 400
+const angular_speed = PI
+
+var jump_dir : Vector2 
+
+@onready var line: Line2D = $Line2D
+@onready var player_sprite: ColorRect = $PlayerSprite
+@onready var jump_marker: Marker2D = $JumpDirection
 @onready var timer: Timer = $Timer
-var timer_seconds : float
+
+const GRAVITY = 20.0
 
 # Calculate vector between players current position and mouse cursor
-var player_pos : Vector2
-var mouse_pos : Vector2 
 var movement_vector : Vector2
 
-var screen_size
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var wall_stick = false
 
-var max_points = 250
+# All possible player colors
+# FUTURE: Build state management system
+var player_color
 
+enum color {
+	RED, #1
+	ORANGE, #2
+	BLUE, #3
+	GREEN #4
+}
 
 func _ready():
-	screen_size = get_viewport_rect().size
-	
 	# Setting jump timer properties
-	timer.wait_time = 1.0
+	# TODO: Convert this timer to make player blow tf up if they spin too long
+	timer.wait_time = 5.0
 	timer.one_shot = false
 	timer.ignore_time_scale = true
 	
 	timer.start()
 	
-# All possible player colors
-# FUTURE: Build state management system
-enum color {
-	RED,
-	ORANGE,
-	BLUE,
-	GREEN
-}
-
-func jump(delta):
-	var jump_height = timer_seconds * -speed / 2
-	print(jump_height)
-	
-	movement_vector = movement_vector * jump_height
-	print(movement_vector)
-	
-	velocity += movement_vector * delta
-	
-	
 func _on_timer_timeout() -> void:
-	timer_seconds += 1
-	print(timer_seconds)
-	
-func show_trajectory(delta):
-	line.clear_points()
-	
-	var pos = global_position
-	var vel = (player_pos - mouse_pos) * -speed
-	
-	for i in max_points:
-		line.add_point(pos)
-		vel.y += gravity * delta
-		pos += vel * delta
-		# FIXME: Break the function if trajectory line touches a wall/ground
+	pass
 
-func _process(delta):
-	player_pos = global_position
-	mouse_pos = get_global_mouse_position()
-	movement_vector = player_pos - mouse_pos 
-	
+# TODO	Add this for polish
+func show_trajectory(delta):
+	pass
+
 func _physics_process(delta):
-	# Gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	# Calculating Jump Direction
+	jump_dir = jump_marker.position
 	
-	if Input.is_action_just_pressed("left_click"):
+	# Gravity
+	if not wall_stick:
+		velocity.y += GRAVITY
+	else:
+		velocity = Vector2.ZERO
+	
+	if Input.is_action_pressed("left_click"):
+		# Marker Rotation around player
+		var marker_velocity = Vector2.UP.rotated(rotation) * -speed
+		
+		jump_marker.rotation += angular_speed * delta
+		jump_marker.position += (marker_velocity * 500) * delta 
+		
+		
+		print(jump_marker.rotation)
+		look_at(jump_dir)
+		
 		timer.paused = false
-		timer_seconds = 0
+		
 		line.show()
 		show_trajectory(delta)
-
+		
+		player_sprite.color = Color(1.0, 1.0, 1.0, 1.0)
+		
 	if Input.is_action_just_released("left_click"):
 		timer.paused = true
+		wall_stick = false
+		
 		line.hide()
-		jump(delta)
+		
+		jump()
+		velocity.y += GRAVITY
 	
 	if movement_vector.length() > 0:
 		movement_vector = movement_vector.normalized()
-		
-	position = position.clamp(Vector2.ZERO, screen_size)
 	
+	# Automatically multiplies by DeltaTime
 	move_and_slide()
-		
-func change_color():
-	pass
+	
+func jump():
+	# FIXME: Check if the player is cllided w/ something before adding the vector! Otherwise they will clip through wall
+	movement_vector = jump_marker.position - position
+	var jump_vel = speed * movement_vector / 3
+	velocity += jump_vel
+	
+	
+	print(jump_vel)
+	
+	if not is_on_wall():
+		$Area2D/CollisionShape2D.disabled = false
+
+func _input(event):
+	change_color(event)
+
+func change_color(event):
+	if Input.is_action_just_pressed("1"):
+		player_color = color.RED
+		player_sprite.color = Color(1.0, 0.0, 0.0, 1.0)
+	
+	if Input.is_action_just_pressed("2"):
+		player_color = color.ORANGE
+		player_sprite.color = Color(1.0, 0.5, 0.0, 1.0)
+	
+	if Input.is_action_just_pressed("3"):
+		player_color = color.BLUE
+		player_sprite.color = Color(0.0, 0.0, 1.0, 1.0)
+	
+	if Input.is_action_just_pressed("4"):
+		player_color = color.GREEN
+		player_sprite.color = Color(0.0, 1.0, 0.0, 1.0)
+	
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	wall_hit.emit()
+
+func _on_wall_hit() -> void:
+	wall_stick = true
+	jump_marker.position = Vector2(0, 0)
+	jump_marker.rotation = 0
+	
+	if not Input.is_action_pressed("left_click"):
+		rotation = 0
+		#FIXME: Player not landing flush on surfaces (Area2d collider is too big)
+	
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+	#$Area2D/CollisionShape2D.disabled = true

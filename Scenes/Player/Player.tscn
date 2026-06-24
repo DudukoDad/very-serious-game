@@ -1,26 +1,34 @@
 [gd_scene format=3 uid="uid://ckil3552olo5x"]
 
 [ext_resource type="Script" uid="uid://tml21amih2qs" path="res://Scripts/player.gd" id="1_s0eop"]
-[ext_resource type="Texture2D" uid="uid://31slytk8kuk5" path="res://Assets/Sprites/color_square.png" id="2_a3d8c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h54ih"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvnfx"]
+size = Vector2(25.189873, 25.189873)
 
 [sub_resource type="Gradient" id="Gradient_xpcdj"]
 offsets = PackedFloat32Array(0, 0.9705882)
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
 
-[node name="Player" type="CharacterBody2D" unique_id=176213554]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h54ih"]
+size = Vector2(25.189873, 25.189873)
+
+[node name="Player" type="CharacterBody2D" unique_id=44558379]
+collision_layer = 2
 script = ExtResource("1_s0eop")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1550212430]
-scale = Vector2(1.58, 1.58)
-shape = SubResource("RectangleShape2D_h54ih")
+[node name="Area2D" type="Area2D" parent="." unique_id=2024603270]
+position = Vector2(-20, -20)
+collision_layer = 16
+collision_mask = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=127807151]
-texture = ExtResource("2_a3d8c")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1550212430]
+position = Vector2(20.1, 20.1)
+scale = Vector2(1.64, 1.64)
+shape = SubResource("RectangleShape2D_uvnfx")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=1259832757]
+position = Vector2(20, 20)
 width = 15.0
 gradient = SubResource("Gradient_xpcdj")
 joint_mode = 2
@@ -29,4 +37,26 @@ end_cap_mode = 2
 
 [node name="Timer" type="Timer" parent="." unique_id=828105703]
 
+[node name="PlayerSprite" type="ColorRect" parent="." unique_id=1638780888]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+pivot_offset = Vector2(20, 20)
+
+[node name="CollisionShapePlayer" type="CollisionShape2D" parent="." unique_id=688812235]
+position = Vector2(0.10000229, 0.10000229)
+scale = Vector2(1.595, 1.595)
+shape = SubResource("RectangleShape2D_h54ih")
+
+[node name="Temporary Aim" type="Line2D" parent="." unique_id=1885303182]
+points = PackedVector2Array(0, 0, 75, 0)
+default_color = Color(1, 0.38967055, 0.40933874, 1)
+
+[node name="JumpDirection" type="Marker2D" parent="." unique_id=1203832109]
+position = Vector2(73, 0)
+
+[connection signal="wall_hit" from="." to="." method="_on_wall_hit"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
