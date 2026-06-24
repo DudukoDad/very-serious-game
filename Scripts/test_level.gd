@@ -1,7 +1,6 @@
 extends BaseLevel
 
 @onready var spawn_point: Marker2D = $SpawnPoint
-@onready var level_camera: Camera2D = $Camera2D
 
 # Implementing BaseLevel abstract class
 func get_default_player_spawn() -> Vector2:
