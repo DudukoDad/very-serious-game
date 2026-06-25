@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ba46ry6tjhakk"]
+
+[ext_resource type="Script" uid="uid://b73ubri51iy2r" path="res://Scenes/Obstacles/objective.gd" id="1_xo421"]
+
+[node name="Area2D" type="Area2D" unique_id=1435950972]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_xo421")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=178396273]
+polygon = PackedVector2Array(15, 21, 15, 0, 0, -19, -17, 0, -17, 21)
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=579272225]
+polygon = PackedVector2Array(0, -19, -17, 0, -17, 21, 15, 21, 15, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

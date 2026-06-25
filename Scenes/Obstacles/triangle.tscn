@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cjxqojsf5gnbx"]
+
+[ext_resource type="Texture2D" uid="uid://by7r22j2sirs" path="res://Sprites/triangle.svg" id="1_2u0mj"]
+[ext_resource type="Script" uid="uid://c2m44xkkfltr0" path="res://Scripts/triangle.gd" id="2_rgo5i"]
+
+[node name="Area2D" type="Area2D" unique_id=1435950972]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("2_rgo5i")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=178396273]
+polygon = PackedVector2Array(22, 21, -1, -9, -20, 21)
+
+[node name="Triangle" type="Sprite2D" parent="." unique_id=1293370379]
+texture = ExtResource("1_2u0mj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

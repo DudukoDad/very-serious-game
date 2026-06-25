@@ -2,28 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dax2j2u6qbl8" path="res://Scripts/main_game.gd" id="1_l756w"]
 
-[sub_resource type="GDScript" id="GDScript_g4v7s"]
-script/source = "extends Node
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [node name="MainGame" type="Node" unique_id=547689714]
 process_mode = 3
 script = ExtResource("1_l756w")
 
 [node name="Systems" type="Node" parent="." unique_id=1757745256]
-
-[node name="GameManager" type="Node" parent="Systems" unique_id=248165084]
-script = SubResource("GDScript_g4v7s")
 
 [node name="World" type="Node2D" parent="." unique_id=1170114830]
 process_mode = 1

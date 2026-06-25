@@ -137,4 +137,3 @@ func _on_wall_hit() -> void:
 		#FIXME: Player not landing flush on surfaces (Area2d collider is too big)
 	
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
-	#$Area2D/CollisionShape2D.disabled = true
