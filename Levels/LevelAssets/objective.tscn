@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ba46ry6tjhakk"]
 
-[ext_resource type="Script" uid="uid://b73ubri51iy2r" path="res://Scenes/Obstacles/objective.gd" id="1_xo421"]
+[ext_resource type="Script" uid="uid://b73ubri51iy2r" path="res://Scripts/objective.gd" id="1_xo421"]
 
-[node name="Area2D" type="Area2D" unique_id=1435950972]
+[node name="Objective" type="Area2D" unique_id=1435950972]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_xo421")

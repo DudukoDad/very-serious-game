@@ -12,7 +12,7 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h54ih"]
 size = Vector2(25.189873, 25.189873)
 
-[node name="Player" type="CharacterBody2D" unique_id=44558379]
+[node name="Player" type="CharacterBody2D" unique_id=44558379 groups=["Player"]]
 collision_layer = 2
 script = ExtResource("1_s0eop")
 metadata/_edit_group_ = true

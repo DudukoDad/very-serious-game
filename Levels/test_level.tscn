@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://hc1lxuadkniy"]
 
 [ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Scripts/test_level.gd" id="1_ormqy"]
-[ext_resource type="PackedScene" uid="uid://cjxqojsf5gnbx" path="res://Scenes/Obstacles/triangle.tscn" id="2_00vsl"]
-[ext_resource type="PackedScene" uid="uid://ba46ry6tjhakk" path="res://Scenes/Obstacles/objective.tscn" id="3_4k50d"]
+[ext_resource type="PackedScene" uid="uid://cjxqojsf5gnbx" path="res://Levels/LevelAssets/Obstacles/triangle.tscn" id="2_00vsl"]
+[ext_resource type="PackedScene" uid="uid://ba46ry6tjhakk" path="res://Levels/LevelAssets/objective.tscn" id="3_4k50d"]
+[ext_resource type="PackedScene" uid="uid://ckil3552olo5x" path="res://Scenes/Player/Player.tscn" id="4_i4ak4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 size = Vector2(150.44075, 13.671481)
@@ -86,7 +87,10 @@ scale = Vector2(7.654474, -2.900568)
 shape = SubResource("RectangleShape2D_00vsl")
 
 [node name="Triangle" parent="." unique_id=1293370379 instance=ExtResource("2_00vsl")]
-position = Vector2(726, 454.00003)
+position = Vector2(845, 580)
 
 [node name="Area2D" parent="." unique_id=1435950972 instance=ExtResource("3_4k50d")]
 position = Vector2(1076, 570)
+
+[node name="Player" parent="." unique_id=44558379 instance=ExtResource("4_i4ak4")]
+position = Vector2(273, 560)
