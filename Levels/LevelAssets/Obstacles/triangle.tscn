@@ -1,17 +1,19 @@
 [gd_scene format=3 uid="uid://cjxqojsf5gnbx"]
 
 [ext_resource type="Script" uid="uid://c2m44xkkfltr0" path="res://Scripts/triangle.gd" id="1_1qe6v"]
-[ext_resource type="Texture2D" uid="uid://by7r22j2sirs" path="res://Sprites/triangle.svg" id="2_wimg2"]
+[ext_resource type="Texture2D" uid="uid://diatjg7dtxv4g" path="res://Sprites/Game_Jam_Sheet-Sheet.png" id="2_1qe6v"]
 
 [node name="Obstacle" type="Area2D" unique_id=1435950972]
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_1qe6v")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=178396273]
-polygon = PackedVector2Array(22, 21, -1, -9, -20, 21)
-
 [node name="Triangle" type="Sprite2D" parent="." unique_id=1293370379]
-texture = ExtResource("2_wimg2")
+texture = ExtResource("2_1qe6v")
+region_enabled = true
+region_rect = Rect2(24, 3, 8, 5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=4823298]
+polygon = PackedVector2Array(-4, -3, 4, -3, 4, 3, -4, 3)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

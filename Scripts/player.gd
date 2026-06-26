@@ -75,8 +75,6 @@ func _physics_process(delta):
 		line.show()
 		show_trajectory(delta)
 		
-		player_sprite.color = Color(1.0, 1.0, 1.0, 1.0)
-		
 	if Input.is_action_just_released("left_click"):
 		timer.paused = true
 		wall_stick = false
@@ -104,25 +102,6 @@ func jump():
 	if not is_on_wall():
 		$Area2D/CollisionShape2D.disabled = false
 
-func _input(event):
-	change_color(event)
-
-func change_color(event):
-	if Input.is_action_just_pressed("1"):
-		player_color = color.RED
-		player_sprite.color = Color(1.0, 0.0, 0.0, 1.0)
-	
-	if Input.is_action_just_pressed("2"):
-		player_color = color.ORANGE
-		player_sprite.color = Color(1.0, 0.5, 0.0, 1.0)
-	
-	if Input.is_action_just_pressed("3"):
-		player_color = color.BLUE
-		player_sprite.color = Color(0.0, 0.0, 1.0, 1.0)
-	
-	if Input.is_action_just_pressed("4"):
-		player_color = color.GREEN
-		player_sprite.color = Color(0.0, 1.0, 0.0, 1.0)
 	
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	wall_hit.emit()

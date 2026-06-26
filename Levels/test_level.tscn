@@ -88,6 +88,7 @@ shape = SubResource("RectangleShape2D_00vsl")
 
 [node name="Triangle" parent="." unique_id=1293370379 instance=ExtResource("2_00vsl")]
 position = Vector2(845, 580)
+scale = Vector2(8.345, 8.345)
 
 [node name="Area2D" parent="." unique_id=1435950972 instance=ExtResource("3_4k50d")]
 position = Vector2(1076, 570)

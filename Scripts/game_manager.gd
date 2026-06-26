@@ -30,11 +30,13 @@ func _on_state_changed(current_state: State):
 			# If player collides w/ end goal
 			print('GameState: Win')
 			get_tree().call_group("Player", "queue_free")
+			# Load next level
 		State.LOSS:
 			# Player collides w/ obstacle or falls out of map
 			current_level = 0
 			# Delete the character
 			get_tree().call_group("Player", "queue_free")
+			get_tree().reload_current_scene()
 			# Prompt to restart
 			print('GameState: Loss')
 		State.PAUSE:
