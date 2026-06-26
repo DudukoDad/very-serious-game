@@ -1,97 +1,161 @@
 [gd_scene format=3 uid="uid://hc1lxuadkniy"]
 
 [ext_resource type="Script" uid="uid://d1u46pwnf188h" path="res://Scripts/test_level.gd" id="1_ormqy"]
-[ext_resource type="PackedScene" uid="uid://cjxqojsf5gnbx" path="res://Levels/LevelAssets/Obstacles/triangle.tscn" id="2_00vsl"]
+[ext_resource type="PackedScene" uid="uid://blulqug5o2qsx" path="res://Levels/LevelAssets/TileMaps/level_template.tscn" id="2_00vsl"]
 [ext_resource type="PackedScene" uid="uid://ba46ry6tjhakk" path="res://Levels/LevelAssets/objective.tscn" id="3_4k50d"]
+[ext_resource type="PackedScene" uid="uid://cjxqojsf5gnbx" path="res://Levels/LevelAssets/Obstacles/triangle.tscn" id="4_3158n"]
 [ext_resource type="PackedScene" uid="uid://ckil3552olo5x" path="res://Scenes/Player/Player.tscn" id="4_i4ak4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
-size = Vector2(150.44075, 13.671481)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ormqy"]
-size = Vector2(83.159836, 13.863678)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_00vsl"]
-size = Vector2(84.46626, 13.671463)
-
 [node name="TestLevel" type="Node2D" unique_id=152431671]
+position = Vector2(12, -6)
 script = ExtResource("1_ormqy")
 
-[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1631295136]
-position = Vector2(262, 129)
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1701605866]
-offset_top = 600.0
-offset_right = 1152.0
-offset_bottom = 640.0
-scale = Vector2(1, 1.16)
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect" unique_id=1364511219]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/StaticBody2D" unique_id=294088403]
-position = Vector2(576.2276, 20.106384)
-scale = Vector2(7.654474, -2.900568)
-shape = SubResource("RectangleShape2D_g4v7s")
-
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=7281857]
-offset_right = 1152.0
-offset_bottom = 40.0
-scale = Vector2(1, 1.16)
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect2" unique_id=1176663949]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect2/StaticBody2D" unique_id=953539068]
-position = Vector2(575.99994, 19.827587)
-scale = Vector2(7.654474, -2.900568)
-shape = SubResource("RectangleShape2D_g4v7s")
-
-[node name="ColorRect3" type="ColorRect" parent="." unique_id=1378475748]
-offset_left = 46.0
-offset_top = 7.0
-offset_right = 646.0
-offset_bottom = 47.0
-rotation = 1.5707964
-scale = Vector2(1, 1.16)
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect3" unique_id=2116786632]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect3/StaticBody2D" unique_id=2029036254]
-position = Vector2(316.99997, 19.827576)
-scale = Vector2(7.654474, -2.900568)
-shape = SubResource("RectangleShape2D_ormqy")
-
-[node name="ColorRect4" type="ColorRect" parent="." unique_id=555726712]
-offset_left = 1152.0
-offset_right = 1752.0
-offset_bottom = 40.0
-rotation = 1.5707964
-scale = Vector2(1, 1.16)
-metadata/_edit_group_ = true
-
-[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect4" unique_id=1132677972]
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect4/StaticBody2D" unique_id=141788589]
-position = Vector2(323.7276, 19.827698)
-scale = Vector2(7.654474, -2.900568)
-shape = SubResource("RectangleShape2D_00vsl")
-
-[node name="Triangle" parent="." unique_id=1293370379 instance=ExtResource("2_00vsl")]
-position = Vector2(845, 580)
-scale = Vector2(8.345, 8.345)
-
-[node name="Area2D" parent="." unique_id=1435950972 instance=ExtResource("3_4k50d")]
-position = Vector2(1076, 570)
-
 [node name="Player" parent="." unique_id=44558379 instance=ExtResource("4_i4ak4")]
-position = Vector2(273, 560)
+position = Vector2(171, -227)
+
+[node name="Obstacle" parent="." unique_id=1435950972 instance=ExtResource("4_3158n")]
+position = Vector2(200, -204)
+metadata/_edit_group_ = true
+
+[node name="Obstacle2" parent="Obstacle" unique_id=1854133270 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2" unique_id=276715455 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2" unique_id=1835786295 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2" unique_id=1949886107 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=39403445 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=139636296 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=2043118998 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=346550417 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=1317405930 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=367885496 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=1994868786 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=706166013 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=1116509570 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=197121881 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=24798868 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=673074790 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=998139821 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle" parent="Obstacle" unique_id=1339594023 instance=ExtResource("4_3158n")]
+position = Vector2(315, -49)
+rotation = 3.1392705
+metadata/_edit_group_ = true
+
+[node name="Obstacle2" parent="Obstacle/Obstacle" unique_id=537148007 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2" unique_id=1241696724 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2" unique_id=740513615 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2" unique_id=1211939234 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=261351173 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=346261754 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=805679564 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=155683822 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=757827862 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=437079503 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=1716999778 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=208797509 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=763293171 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=302799092 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=329854675 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=402653642 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Obstacle2" parent="Obstacle/Obstacle/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2/Obstacle2" unique_id=1185667650 instance=ExtResource("4_3158n")]
+position = Vector2(8, 0)
+
+[node name="Objective" parent="Obstacle" unique_id=2098227054 instance=ExtResource("3_4k50d")]
+position = Vector2(325, -6)
+scale = Vector2(0.37, 0.37)
+
+[node name="StaticBody2D" parent="." unique_id=46125965 instance=ExtResource("2_00vsl")]
+position = Vector2(84.73215, -308.48975)
+
+[node name="Polygon2D" parent="StaticBody2D" index="0" unique_id=1843635306]
+polygon = PackedVector2Array(55.267853, 106.489746, 255.26785, 106.489746, 255.26785, 130.48975, 55.267853, 130.48975)
+
+[node name="StaticBody2D2" parent="." unique_id=768747175 instance=ExtResource("2_00vsl")]
+position = Vector2(169.4643, -616.9795)
+
+[node name="Polygon2D" parent="StaticBody2D2" index="0" unique_id=1843635306]
+position = Vector2(-85.464294, 230.97949)
+polygon = PackedVector2Array(56, 107, 255.26785, 106.489746, 255.26785, 130.48975, 56, 131)
+
+[node name="StaticBody2D3" parent="." unique_id=1509691279 instance=ExtResource("2_00vsl")]
+position = Vector2(365, -540)
+
+[node name="Polygon2D" parent="StaticBody2D3" index="0" unique_id=1843635306]
+position = Vector2(-85.464294, 230.97949)
+polygon = PackedVector2Array(56, 107, 255.26785, 106.489746, 255.26785, 130.48975, 56, 131)
+
+[node name="StaticBody2D4" parent="." unique_id=1878624907 instance=ExtResource("2_00vsl")]
+position = Vector2(365, -617)
+
+[node name="Polygon2D" parent="StaticBody2D4" index="0" unique_id=1843635306]
+position = Vector2(-85.464294, 230.97949)
+polygon = PackedVector2Array(56, 107, 255.26785, 106.489746, 255.26785, 130.48975, 56, 131)
+
+[editable path="StaticBody2D"]
+[editable path="StaticBody2D2"]
+[editable path="StaticBody2D3"]
+[editable path="StaticBody2D4"]

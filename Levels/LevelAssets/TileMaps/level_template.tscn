@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://blulqug5o2qsx"]
+
+[ext_resource type="Script" uid="uid://csihoyioh8dup" path="res://Scripts/level_template.gd" id="1_3gik0"]
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=46125965]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_3gik0")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1843635306]

@@ -3,116 +3,82 @@ extends CharacterBody2D
 
 signal wall_hit
 
-@export var speed = 5
+@export var speed: float = 100.0
+@export var rotation_speed: float = 5.0
+@export var gravity: float = 20.0
 
-@export var rotation_speed = 400
-const angular_speed = PI
-
-var jump_dir : Vector2 
+var wall_stick: bool = false
+var jump_dir: Vector2 = Vector2.ZERO
 
 @onready var line: Line2D = $Line2D
 @onready var player_sprite: ColorRect = $PlayerSprite
 @onready var jump_marker: Marker2D = $JumpDirection
 @onready var timer: Timer = $Timer
 
-const GRAVITY = 20.0
-
-# Calculate vector between players current position and mouse cursor
-var movement_vector : Vector2
-
-var wall_stick = false
-
-# All possible player colors
-# FUTURE: Build state management system
-var player_color
-
-enum color {
-	RED, #1
-	ORANGE, #2
-	BLUE, #3
-	GREEN #4
-}
-
-func _ready():
-	# Setting jump timer properties
-	# TODO: Convert this timer to make player blow tf up if they spin too long
+func _ready() -> void:
 	timer.wait_time = 5.0
 	timer.one_shot = false
 	timer.ignore_time_scale = true
-	
 	timer.start()
 	
-func _on_timer_timeout() -> void:
-	pass
+	if not wall_hit.is_connected(_on_wall_hit):
+		wall_hit.connect(_on_wall_hit)
 
-# TODO	Add this for polish
-func show_trajectory(delta):
-	pass
-
-func _physics_process(delta):
-	# Calculating Jump Direction
+func _physics_process(delta: float) -> void:
 	jump_dir = jump_marker.position
 	
-	# Gravity
 	if not wall_stick:
-		velocity.y += GRAVITY
+		velocity.y += gravity
 	else:
 		velocity = Vector2.ZERO
-	
+
 	if Input.is_action_pressed("left_click"):
-		# Marker Rotation around player
-		var marker_velocity = Vector2.UP.rotated(rotation) * -speed
-		
-		jump_marker.rotation += angular_speed * delta
-		jump_marker.position += (marker_velocity * 500) * delta 
-		
-		
-		print(jump_marker.rotation)
-		look_at(jump_dir)
-		
 		timer.paused = false
 		
-		line.show()
-		show_trajectory(delta)
+		# Kept your original negative speed here to match your rotation math
+		var marker_velocity = Vector2.UP.rotated(rotation) * -speed
+		jump_marker.rotation += rotation_speed * delta
+		jump_marker.position += marker_velocity * delta 
+		
+		look_at(global_position + jump_dir)
 		
 	if Input.is_action_just_released("left_click"):
 		timer.paused = true
-		wall_stick = false
-		
-		line.hide()
-		
+		if wall_stick:
+			var wall_normal = get_wall_normal()
+			if wall_normal != Vector2.ZERO:
+				global_position += wall_normal * 2.0
+			else:
+				global_position -= jump_dir.normalized() * 2.0
+				
+			wall_stick = false
+			
 		jump()
-		velocity.y += GRAVITY
-	
-	if movement_vector.length() > 0:
-		movement_vector = movement_vector.normalized()
-	
-	# Automatically multiplies by DeltaTime
-	move_and_slide()
-	
-func jump():
-	# FIXME: Check if the player is cllided w/ something before adding the vector! Otherwise they will clip through wall
-	movement_vector = jump_marker.position - position
-	var jump_vel = speed * movement_vector / 3
-	velocity += jump_vel
-	
-	
-	print(jump_vel)
-	
-	if not is_on_wall():
-		$Area2D/CollisionShape2D.disabled = false
 
+	move_and_slide()
+
+func jump() -> void:
+	var movement_vector = jump_marker.position
+	# Multiplied by -1 to invert the magnitude so you shoot towards the marker
+	var jump_vel = (speed * movement_vector) / 3
+	velocity = jump_vel
 	
+	$Area2D/CollisionShape2D.set_deferred("disabled", false)
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	wall_hit.emit()
+	if body != self:
+		wall_hit.emit()
 
 func _on_wall_hit() -> void:
 	wall_stick = true
-	jump_marker.position = Vector2(0, 0)
+	velocity = Vector2.ZERO
+	jump_marker.position = Vector2.ZERO
 	jump_marker.rotation = 0
 	
 	if not Input.is_action_pressed("left_click"):
 		rotation = 0
-		#FIXME: Player not landing flush on surfaces (Area2d collider is too big)
-	
+		
 	$Area2D/CollisionShape2D.set_deferred("disabled", true)
+
+func _on_timer_timeout() -> void:
+	pass
